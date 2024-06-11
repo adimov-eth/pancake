@@ -10,6 +10,7 @@ export const SUPPORTED_CHAINS = [
   ChainId.GOERLI,
   ChainId.ARBITRUM_ONE,
   ChainId.SCROLL_SEPOLIA,
+  ChainId.SEPOLIA,
   ChainId.BASE,
   ChainId.BASE_TESTNET,
   ChainId.LINEA,

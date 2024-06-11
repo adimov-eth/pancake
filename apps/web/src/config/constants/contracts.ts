@@ -1,17 +1,36 @@
 import { ChainId } from '@pancakeswap/chains'
-import { masterChefV3Addresses } from '@pancakeswap/farms'
 import { GAUGES_ADDRESS, GAUGES_CALC_ADDRESS } from '@pancakeswap/gauges'
 import { ICAKE } from '@pancakeswap/ifos'
 import { CAKE_VAULT } from '@pancakeswap/pools'
 import { V3_QUOTER_ADDRESSES } from '@pancakeswap/smart-router'
-import { DEPLOYER_ADDRESSES, NFT_POSITION_MANAGER_ADDRESSES } from '@pancakeswap/v3-sdk'
+import { NFT_POSITION_MANAGER_ADDRESSES } from '@pancakeswap/v3-sdk'
+
+const sepolia = {
+  MasterChefV3: '0x9b19f693B4F697E511ADCaA3431979180621731c', //
+  SmartRouter: '0xc3b3500A733399Cf2B43B0C1b3AeEd5d5399fB96', //
+  SmartRouterHelper: '0x22cf03da7939d643124f7AdB35D54185b5c54369',
+  MixedRouteQuoterV1: '0x4bb3e8E1934a38E382A85C48320B163B27DB2BcD',
+  QuoterV2: '0xc4c7bE26d53734593B0B0858a2A70387dad51907',
+  TokenValidator: '0x501778DC55739E049Fa5dbCbee6cdAf78Ce2445C',
+  PancakeV3Factory: '0xD8050612F804cC6CB001e7D14f9bc18397919f16',
+  PancakeV3PoolDeployer: '0xFDc17eD15Ab9ae8b122Af6E13F933e377cFB244D',
+  SwapRouter: '0xc2f5f86ABca9B26E5b9dBB3cF637c7b449f0e8F0',
+  V3Migrator: '0x4247C591aA8438088e335dDF04b1d8255e3769f0', //
+  TickLens: '0x65708Dd0568C5e08d9360f0735fe1069e08250BB',
+  NonfungibleTokenPositionDescriptor: '0x8068212D00C44cc6bc15814ADe28d77c043aCff9',
+  NonfungiblePositionManager: '0x216bec1Fcb6aeb385079E42A286cb35C0aDc698d',
+  PancakeInterfaceMulticall: '0xd3b70cFd430E26D4B2618AF0389e6eAeBe9e3289',
+  PancakeV3LmPoolDeployer: '0x8D18b710fD2c13d03d2650BB991835Dec9524C5e',
+}
 
 export default {
   masterChef: {
     [ChainId.BSC_TESTNET]: '0xB4A466911556e39210a6bB2FaECBB59E4eB7E43d',
     [ChainId.BSC]: '0xa5f8C5Dbd5F286960b9d90548680aE5ebFf07652',
   },
-  masterChefV3: masterChefV3Addresses,
+  masterChefV3: {
+    [ChainId.SEPOLIA]: '0x9b19f693B4F697E511ADCaA3431979180621731c',
+  },
   masterChefV1: {
     [ChainId.BSC_TESTNET]: '0x1d32c2945C8FDCBc7156c553B7cEa4325a17f4f9',
     [ChainId.BSC]: '0x73feaa1eE314F8c655E354234017bE2193C9E24E',
@@ -169,7 +188,7 @@ export default {
     [ChainId.BSC_TESTNET]: '0x',
   },
   nftPositionManager: NFT_POSITION_MANAGER_ADDRESSES,
-  v3PoolDeployer: DEPLOYER_ADDRESSES,
+  v3PoolDeployer: '0xFDc17eD15Ab9ae8b122Af6E13F933e377cFB244D',
   v3Migrator: {
     [ChainId.ETHEREUM]: '0xbC203d7f83677c7ed3F7acEc959963E7F4ECC5C2',
     [ChainId.GOERLI]: '0x46A15B0b27311cedF172AB29E4f4766fbE7F4364',
@@ -188,7 +207,7 @@ export default {
     [ChainId.BASE]: '0xbC203d7f83677c7ed3F7acEc959963E7F4ECC5C2',
     [ChainId.BASE_TESTNET]: '0x8Ae8592a24CD13b7E09D2763E7d6A39E3c0D6bad',
     [ChainId.SCROLL_SEPOLIA]: '0x8Ae8592a24CD13b7E09D2763E7d6A39E3c0D6bad',
-    [ChainId.SEPOLIA]: '0xbC203d7f83677c7ed3F7acEc959963E7F4ECC5C2',
+    [ChainId.SEPOLIA]: '0x4247C591aA8438088e335dDF04b1d8255e3769f0',
   },
   quoter: V3_QUOTER_ADDRESSES,
   v3Airdrop: {
