@@ -1,16 +1,16 @@
-import { ERC20Token, Currency } from '@pancakeswap/sdk'
 import { ChainId, getLlamaChainName } from '@pancakeswap/chains'
+import { Currency, ERC20Token } from '@pancakeswap/sdk'
 import { CAKE } from '@pancakeswap/tokens'
-import { tickToPrice } from '@pancakeswap/v3-sdk'
-import { Address, PublicClient, formatUnits } from 'viem'
-import BN from 'bignumber.js'
 import { BIG_ZERO } from '@pancakeswap/utils/bigNumber'
+import { tickToPrice } from '@pancakeswap/v3-sdk'
+import BN from 'bignumber.js'
 import chunk from 'lodash/chunk'
+import { Address, PublicClient, formatUnits } from 'viem'
 
 import { DEFAULT_COMMON_PRICE, PriceHelper } from '../constants/common'
-import { ComputedFarmConfigV3, FarmV3Data, FarmV3DataWithPrice } from './types'
 import { getFarmApr } from './apr'
 import { FarmV3SupportedChainId, supportedChainIdV3 } from './const'
+import { ComputedFarmConfigV3, FarmV3Data, FarmV3DataWithPrice } from './types'
 
 const chainlinkAbi = [
   {
@@ -39,7 +39,7 @@ export async function farmV3FetchFarms({
 }) {
   const [poolInfos, cakePrice, v3PoolData] = await Promise.all([
     fetchPoolInfos(farms, chainId, provider, masterChefAddress),
-    provider({ chainId: ChainId.BSC })
+    provider({ chainId: ChainId.SEPOLIA })
       .readContract({
         abi: chainlinkAbi,
         address: '0xB6064eD41d4f67e353768aA239cA86f4F73665a1',
@@ -48,6 +48,7 @@ export async function farmV3FetchFarms({
       .then((res) => formatUnits(res, 8)),
     fetchV3Pools(farms, chainId, provider),
   ])
+  console.log('poolInfos', poolInfos, 'cakePrice', cakePrice, 'v3PoolData', v3PoolData)
 
   const lmPoolInfos = await fetchLmPools(
     v3PoolData.map((v3Pool) => (v3Pool[1] ? v3Pool[1] : null)).filter(Boolean) as Address[],
@@ -210,6 +211,7 @@ const fetchPoolInfos = async (
   masterChefAddress: Address,
 ) => {
   try {
+    console.log(farms, chainId, provider, masterChefAddress)
     const calls = farms.map(
       (farm) =>
         ({
